@@ -53,9 +53,13 @@ LINE = (
 
 
 def main() -> None:
+    if not 1 <= len(LINE) <= 100 or not LINE.strip():
+        raise SystemExit(f"entry line is {len(LINE)} chars, outside the 1-100 gate")
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8") as f:
         f.write(LINE)
+    written = open("/output/entry.txt", encoding="utf-8").read()
+    assert written == LINE, "entry.txt does not match the tournament-winning line"
     print(f"Wrote {len(LINE)} characters to /output/entry.txt")
 
 
